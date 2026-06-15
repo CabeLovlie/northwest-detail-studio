@@ -12,7 +12,11 @@ const navLinks = [
   { href: '/quote', label: 'Get Quote' },
 ];
 
-const currentPath = Astro.url.pathname;
+const normalizedPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+function isActiveNav(href: string) {
+  return normalizedPath === href;
+}
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/10 bg-background/90 backdrop-blur-lg">
@@ -31,10 +35,9 @@ const currentPath = Astro.url.pathname;
             href={link.href}
             class:list={[
               'rounded-lg px-2 py-2 text-[13px] font-medium transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent xl:px-3 xl:text-sm',
-              currentPath === link.href
-                ? 'text-accent'
-                : 'text-text-muted',
+              isActiveNav(link.href) ? 'text-accent' : 'text-text-muted',
             ]}
+            aria-current={isActiveNav(link.href) ? 'page' : undefined}
           >
             {link.label}
           </a>
@@ -73,7 +76,11 @@ const currentPath = Astro.url.pathname;
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-text-muted transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            class:list={[
+              'mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-accent-soft hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
+              isActiveNav(link.href) ? 'text-accent' : 'text-text-muted',
+            ]}
+            aria-current={isActiveNav(link.href) ? 'page' : undefined}
           >
             {link.label}
           </a>

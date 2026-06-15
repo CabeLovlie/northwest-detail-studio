@@ -21,50 +21,61 @@ import Ship from '@lucide/astro/icons/ship';
 import MessageSquare from '@lucide/astro/icons/message-square';
 import Calendar from '@lucide/astro/icons/calendar';
 import CircleCheck from '@lucide/astro/icons/circle-check';
+import ChevronDown from '@lucide/astro/icons/chevron-down';
 ---
 
 <Base title={`${site.name} | Premium Auto Detailing in Auburn, WA`}>
   <!-- 1. Hero -->
-  <section class="relative h-[100svh] min-h-[100svh] overflow-hidden">
+  <section class="hero-section relative m-0 h-[100svh] min-h-[100svh] overflow-hidden p-0">
     <img
       src={images.hero}
       alt="Premium detailed vehicle with glossy finish in studio lighting"
-      class="absolute inset-0 h-full w-full object-cover"
+      class="absolute inset-0 z-0 h-full w-full object-cover object-center"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
-    <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
+    <div class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-background via-background/85 to-background/40" aria-hidden="true" />
+    <div class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-background via-transparent to-background/30" aria-hidden="true" />
 
-    <div class="container-narrow relative z-10 flex h-full items-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <div class="max-w-2xl">
-        <SectionEyebrow class="mb-6">Auburn, WA / South Sound</SectionEyebrow>
-        <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-text sm:text-5xl lg:text-6xl">
-          {site.tagline}
-        </h1>
-        <p class="mt-6 text-lg leading-relaxed text-text-muted sm:text-xl">
-          Premium interior detailing, paint correction, ceramic coatings, and maintenance care for cars, trucks, boats, and RVs across the South Sound.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <Button href="/quote">Get a Free Quote</Button>
-          <Button href="/packages" variant="secondary">View Packages</Button>
+    <div class="absolute inset-0 z-[2] flex items-center">
+      <div class="container-narrow w-full px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <SectionEyebrow class="mb-6">Auburn, WA / South Sound</SectionEyebrow>
+          <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-text sm:text-5xl lg:text-6xl">
+            {site.tagline}
+          </h1>
+          <p class="mt-6 text-lg leading-relaxed text-text-muted sm:text-xl">
+            Premium interior detailing, paint correction, ceramic coatings, and maintenance care for cars, trucks, boats, and RVs across the South Sound.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button href="/quote">Get a Free Quote</Button>
+            <Button href="/packages" variant="secondary">View Packages</Button>
+          </div>
+          <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-text-muted" aria-label="Core services">
+            <li class="flex items-center gap-2"><Sparkles class="h-4 w-4 text-accent" aria-hidden="true" /> Interior deep cleaning</li>
+            <li class="flex items-center gap-2"><Gem class="h-4 w-4 text-accent" aria-hidden="true" /> Paint correction</li>
+            <li class="flex items-center gap-2"><Shield class="h-4 w-4 text-accent" aria-hidden="true" /> Ceramic coating</li>
+            <li class="flex items-center gap-2"><Ship class="h-4 w-4 text-accent" aria-hidden="true" /> Boat &amp; RV detailing</li>
+          </ul>
         </div>
-        <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-text-muted" aria-label="Core services">
-          <li class="flex items-center gap-2"><Sparkles class="h-4 w-4 text-accent" aria-hidden="true" /> Interior deep cleaning</li>
-          <li class="flex items-center gap-2"><Gem class="h-4 w-4 text-accent" aria-hidden="true" /> Paint correction</li>
-          <li class="flex items-center gap-2"><Shield class="h-4 w-4 text-accent" aria-hidden="true" /> Ceramic coating</li>
-          <li class="flex items-center gap-2"><Ship class="h-4 w-4 text-accent" aria-hidden="true" /> Boat &amp; RV detailing</li>
-        </ul>
       </div>
     </div>
 
-    <aside class="absolute bottom-8 right-4 z-10 hidden max-w-xs glass-card p-5 lg:block xl:right-8">
+    <aside class="absolute bottom-20 right-4 z-[2] hidden max-w-xs glass-card p-5 lg:bottom-8 lg:block xl:right-8">
       <p class="text-sm font-bold text-accent">Ceramic Coating Available</p>
       <p class="mt-1 text-sm text-text-muted">Long-term gloss, easier washes, stronger paint protection.</p>
     </aside>
+
+    <a
+      href="#trust-bar"
+      class="hero-scroll-chevron absolute bottom-6 left-1/2 z-[2] flex h-10 w-10 -translate-x-1/2 items-center justify-center text-accent transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      aria-label="Scroll to content"
+    >
+      <ChevronDown class="h-8 w-8" aria-hidden="true" />
+    </a>
   </section>
 
   <!-- 2. Trust / Proof Bar -->
-  <section class="border-y border-white/10 bg-surface" aria-label="Trust highlights">
+  <section id="trust-bar" class="border-y border-white/10 bg-surface" aria-label="Trust highlights">
     <div class="container-narrow px-4 py-8 sm:px-6 lg:px-8">
       <p class="mb-6 text-center text-sm font-semibold text-text sm:text-base">
         Built for daily drivers, weekend cars, work trucks, boats, and RVs.
@@ -497,3 +508,25 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
     </div>
   </section>
 </Base>
+
+<style>
+  @keyframes heroChevronBounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(8px);
+    }
+  }
+
+  .hero-scroll-chevron {
+    animation: heroChevronBounce 1.8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll-chevron {
+      animation: none;
+    }
+  }
+</style>
