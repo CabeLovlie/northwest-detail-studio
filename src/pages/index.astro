@@ -26,7 +26,7 @@ import ChevronDown from '@lucide/astro/icons/chevron-down';
 
 <Base title={`${site.name} | Premium Auto Detailing in Auburn, WA`}>
   <!-- 1. Hero -->
-  <section class="hero-section relative m-0 h-[100svh] min-h-[100svh] overflow-hidden p-0">
+  <section class="hero-section relative m-0 h-[calc(100svh-var(--header-height))] min-h-[calc(100svh-var(--header-height))] overflow-hidden p-0">
     <img
       src={images.hero}
       alt="Premium detailed vehicle with glossy finish in studio lighting"

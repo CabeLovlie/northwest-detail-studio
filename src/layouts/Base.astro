@@ -37,7 +37,14 @@ const {
         --accent: #00aaff;
         --accent-strong: #008cff;
         --accent-soft: rgba(0, 170, 255, 0.14);
-        --header-height: 4.5rem;
+        /* Header: py-4 (2rem) + tallest row item + 1px border — 73px mobile, 77px sm+ */
+        --header-height: 4.5625rem;
+      }
+
+      @media (min-width: 640px) {
+        :root {
+          --header-height: 4.8125rem;
+        }
       }
     </style>
   </head>
