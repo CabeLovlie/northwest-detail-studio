@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
 import Card from '../components/Card.astro';
-import PackageCard from '../components/PackageCard.astro';
 import ReviewCard from '../components/ReviewCard.astro';
 import FaqItem from '../components/FaqItem.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
@@ -26,7 +25,7 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
 
 <Base title={`${site.name} | Premium Auto Detailing in Auburn, WA`}>
   <!-- 1. Hero -->
-  <section class="relative min-h-[85vh] overflow-hidden">
+  <section class="relative min-h-[100svh] overflow-hidden">
     <img
       src={images.hero}
       alt="Premium detailed vehicle with glossy finish in studio lighting"
@@ -36,7 +35,7 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
     <div class="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
     <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
 
-    <div class="container-narrow relative flex min-h-[85vh] items-center px-4 py-20 sm:px-6 lg:px-8">
+    <div class="container-narrow relative flex min-h-[100svh] items-center px-4 py-20 sm:px-6 lg:px-8">
       <div class="max-w-2xl">
         <SectionEyebrow class="mb-6">Auburn, WA / South Sound</SectionEyebrow>
         <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-text sm:text-5xl lg:text-6xl">
@@ -147,47 +146,59 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
         {
           [
             {
+              slug: 'interior-detailing',
               title: 'Interior Detailing',
               img: images.dashWiping,
               alt: 'Detailer wiping dashboard during interior detail',
               desc: 'Deep vacuuming, steam cleaning, stain treatment, leather and vinyl care, and odor reduction for a cleaner, more comfortable cabin.',
             },
             {
+              slug: 'exterior-detailing',
               title: 'Exterior Detailing',
               img: images.foam,
               alt: 'Foam wash on vehicle exterior',
               desc: 'Foam wash, hand wash, decontamination, trim care, wheels, tires, and paint-safe finishing for a clean, glossy exterior.',
             },
             {
+              slug: 'paint-correction',
               title: 'Paint Correction',
               img: images.polishCloseup,
               alt: 'Machine polishing close-up',
               desc: 'Machine polishing to reduce swirls, haze, oxidation, and light defects while restoring depth and clarity to the paint.',
             },
             {
+              slug: 'ceramic-coating',
               title: 'Ceramic Coating',
               img: images.ceramicCoatingCloseUpApplication,
               alt: 'Ceramic coating application close-up',
               desc: 'Long-term paint protection that adds gloss, improves water behavior, and makes maintenance washes easier.',
             },
             {
+              slug: 'boat-rv-detailing',
               title: 'Boat & RV Detailing',
               img: images.cleanBoat,
               alt: 'Clean detailed boat',
               desc: 'Large-format detailing for boats, RVs, gelcoat, interiors, seasonal cleanup, and oxidation-prone surfaces.',
             },
             {
+              slug: 'maintenance-details',
               title: 'Maintenance Details',
               img: images.cleanTruck,
               alt: 'Clean truck after maintenance detail',
               desc: 'Recurring care for vehicles that already look good and need to stay clean, protected, and easy to maintain.',
             },
           ].map((service) => (
-            <Card>
-              <img src={service.img} alt={service.alt} class="mb-5 h-48 w-full rounded-xl object-cover" loading="lazy" />
-              <h3 class="mb-3 text-xl font-bold text-text">{service.title}</h3>
-              <p class="text-sm leading-relaxed text-text-muted">{service.desc}</p>
-            </Card>
+            <a
+              href={`/services#${service.slug}`}
+              class="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              aria-label={`Learn more about ${service.title}`}
+            >
+              <Card class="h-full transition-all group-hover:border-accent/30 group-hover:shadow-glow-sm">
+                <img src={service.img} alt={service.alt} class="mb-5 h-48 w-full rounded-xl object-cover" loading="lazy" />
+                <h3 class="mb-3 text-xl font-bold text-text group-hover:text-accent">{service.title}</h3>
+                <p class="text-sm leading-relaxed text-text-muted">{service.desc}</p>
+              </Card>
+            </a>
           ))
         }
       </div>
@@ -195,69 +206,73 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
   </section>
 
   <!-- 5. Packages -->
-  <section id="packages" class="section-padding">
+  <section id="packages" class="section-padding !py-12 lg:!py-16">
     <div class="container-narrow">
-      <div class="mx-auto mb-12 max-w-3xl text-center">
+      <div class="mx-auto mb-8 max-w-3xl text-center">
         <SectionEyebrow class="mb-4 inline-block">Packages</SectionEyebrow>
-        <h2 class="text-3xl font-bold text-text sm:text-4xl">Choose the Detail That Fits Your Vehicle</h2>
-        <p class="mt-4 text-text-muted">
-          Simple packages make it easier to choose, and condition-based quotes keep expectations clear.
+        <h2 class="text-3xl font-bold text-text sm:text-4xl">Choose a Detail, Then We'll Tailor the Quote</h2>
+        <p class="mt-3 text-text-muted">
+          Start with the package that best matches your vehicle's condition. Every quote is adjusted based on size, condition, and your goals.
         </p>
       </div>
-      <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
-        <PackageCard
-          name="Refresh Detail"
-          price="Starting at $149"
-          description="Best for maintained vehicles that need a clean reset."
-          features={['Hand wash', 'Interior vacuum', 'Surface wipe-down', 'Windows', 'Wheels and tires', 'Light interior cleaning']}
-          duration="2–3 hours"
-          cta="Request Refresh Quote"
-        />
-        <PackageCard
-          name="Deep Clean Detail"
-          price="Starting at $249"
-          description="Best for daily drivers, family vehicles, pet hair, spills, stains, and neglected interiors."
-          features={['Full interior detail', 'Steam cleaning', 'Stain treatment', 'Upholstery or leather care', 'Exterior hand wash', 'Clay treatment', 'Paint sealant', 'Trim and tire dressing']}
-          duration="4–6 hours"
-          cta="Request Deep Clean Quote"
-          badge="Most Popular"
-          highlighted={true}
-        />
-        <PackageCard
-          name="Signature Detail"
-          price="Starting at $399"
-          description="Best for vehicles that need a full interior and exterior reset."
-          features={['Full interior deep clean', 'Exterior decontamination', 'One-step polish', 'Paint sealant', 'Wheel and tire detail', 'Final inspection', 'Care recommendations']}
-          duration="6–8 hours"
-          cta="Request Signature Quote"
-        />
+
+      <div class="grid gap-4 sm:grid-cols-3">
+        <a
+          href="/packages#refresh"
+          class="group block rounded-xl border border-white/10 bg-surface/80 p-5 backdrop-blur-md transition-all hover:border-accent/30 hover:shadow-glow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <h3 class="text-lg font-bold text-text group-hover:text-accent">Refresh Detail</h3>
+          <p class="mt-1 text-base font-bold text-accent">Starting at $149</p>
+          <p class="mt-2 text-sm text-text-muted">For maintained vehicles that need a clean reset.</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-accent">View Package →</span>
+        </a>
+        <a
+          href="/packages#deep-clean"
+          class="group block rounded-xl border border-accent/40 bg-surface/80 p-5 shadow-glow-sm ring-1 ring-accent/20 backdrop-blur-md transition-all hover:border-accent/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <div class="mb-2 flex items-center justify-between gap-2">
+            <h3 class="text-lg font-bold text-text group-hover:text-accent">Deep Clean Detail</h3>
+            <span class="shrink-0 rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold text-accent">Most Popular</span>
+          </div>
+          <p class="text-base font-bold text-accent">Starting at $249</p>
+          <p class="mt-2 text-sm text-text-muted">For daily drivers, family vehicles, pet hair, stains, and neglected interiors.</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-accent">View Package →</span>
+        </a>
+        <a
+          href="/packages#signature"
+          class="group block rounded-xl border border-white/10 bg-surface/80 p-5 backdrop-blur-md transition-all hover:border-accent/30 hover:shadow-glow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <h3 class="text-lg font-bold text-text group-hover:text-accent">Signature Detail</h3>
+          <p class="mt-1 text-base font-bold text-accent">Starting at $399</p>
+          <p class="mt-2 text-sm text-text-muted">For vehicles that need a full interior and exterior reset.</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-accent">View Package →</span>
+        </a>
       </div>
 
-      <article class="mt-8 overflow-hidden rounded-2xl border border-accent/40 bg-surface shadow-glow ring-1 ring-accent/20">
-        <div class="grid lg:grid-cols-2">
-          <div class="relative min-h-[240px] lg:min-h-full">
-            <img src={images.ceramicCoatingReflection} alt="Glossy ceramic-coated paint reflection" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface lg:bg-gradient-to-r lg:from-transparent lg:to-surface" />
-          </div>
-          <div class="flex flex-col justify-center p-8 sm:p-10">
-            <span class="mb-3 inline-flex w-fit rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">Premium Protection</span>
-            <h3 class="text-2xl font-bold text-text">Ceramic Coating</h3>
-            <p class="mt-2 text-xl font-bold text-accent">Starting at $699</p>
-            <p class="mt-3 text-sm text-text-muted">
-              Best for drivers who want longer-lasting protection, deeper gloss, and easier washing.
-            </p>
-            <ul class="mt-4 space-y-2 text-sm text-text-muted">
-              <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Paint decontamination</li>
-              <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Gloss enhancement polish</li>
-              <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Surface prep &amp; ceramic application</li>
-              <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Cure guidance &amp; maintenance recommendations</li>
-            </ul>
-            <div class="mt-6">
-              <Button href="/ceramic-coating">Explore Ceramic Coating</Button>
-            </div>
-          </div>
+      <a
+        href="/ceramic-coating"
+        class="group relative mt-4 block overflow-hidden rounded-xl border border-accent/30 shadow-glow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <img
+          src={images.waterBeading}
+          alt="Water beading on ceramic coated paint"
+          class="absolute inset-0 h-full w-full object-cover opacity-30"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/70" />
+        <div class="relative flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+          <p class="text-sm leading-relaxed text-text sm:text-base">
+            <span class="font-bold text-text">Ceramic Coating</span>
+            <span class="text-text-muted"> · Starting at $699 · Long-term gloss, easier washing, and stronger paint protection for drivers who want lasting results.</span>
+          </p>
+          <span class="shrink-0 text-sm font-semibold text-accent group-hover:text-accent-strong">Explore Ceramic Coating →</span>
         </div>
-      </article>
+      </a>
+
+      <div class="mt-6 flex flex-col items-center justify-between gap-4 rounded-xl border border-white/10 bg-surface-soft/50 px-5 py-4 sm:flex-row">
+        <p class="text-sm text-text-muted">Not sure what your vehicle needs? Send a few photos and we'll recommend the right service.</p>
+        <Button href="/quote" size="sm">Help Me Choose</Button>
+      </div>
     </div>
   </section>
 
@@ -359,40 +374,53 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
   </section>
 
   <!-- 9. Process -->
-  <section class="section-padding">
+  <section class="section-padding !py-12 lg:!py-16">
     <div class="container-narrow">
-      <div class="mx-auto mb-12 max-w-3xl text-center">
-        <SectionEyebrow class="mb-4 inline-block">Process</SectionEyebrow>
-        <h2 class="text-3xl font-bold text-text sm:text-4xl">A Simple Process From Quote to Final Walkthrough</h2>
+      <div class="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
+        <div>
+          <SectionEyebrow class="mb-4">Our Process</SectionEyebrow>
+          <h2 class="text-3xl font-bold text-text sm:text-4xl">A Simple Process From Quote to Final Walkthrough</h2>
+          <p class="mt-4 text-text-muted">
+            From the first quote request to the final walkthrough, every detail is built around clear expectations, careful work, and visible results.
+          </p>
+        </div>
+        <div class="hidden lg:block">
+          <img
+            src={images.detailerAtWork02}
+            alt="Detailer working on vehicle exterior"
+            class="h-full min-h-[280px] w-full rounded-xl border border-accent/30 object-cover shadow-glow-sm"
+            loading="lazy"
+          />
+        </div>
       </div>
 
-      <div class="grid gap-8 lg:grid-cols-2">
-        <ol class="relative space-y-8 border-l-2 border-accent/30 pl-8">
-          {
-            [
-              { step: '1', title: 'Send Vehicle Details', desc: "Tell us the vehicle type, condition, and services you're interested in.", icon: MessageSquare },
-              { step: '2', title: 'Get a Clear Recommendation', desc: "We'll recommend the right package or add-ons based on your goals.", icon: ClipboardList },
-              { step: '3', title: 'Detail Day', desc: 'Your vehicle gets cleaned, restored, and protected using a careful step-by-step process.', icon: Calendar },
-              { step: '4', title: 'Final Walkthrough', desc: 'We review the work with you and share care tips for keeping it clean longer.', icon: CircleCheck },
-            ].map((item) => (
-              <li class="relative">
-                <span class="absolute -left-[41px] flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-bold text-background">{item.step}</span>
-                <h3 class="flex items-center gap-2 text-lg font-bold text-text">
-                  <item.icon class="h-5 w-5 text-accent" aria-hidden="true" />
-                  {item.title}
-                </h3>
-                <p class="mt-2 text-sm text-text-muted">{item.desc}</p>
-              </li>
-            ))
-          }
-        </ol>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {
+          [
+            { step: '01', title: 'Send Vehicle Details', desc: "Tell us your vehicle type, condition, and the services you're interested in.", icon: MessageSquare },
+            { step: '02', title: 'Get a Clear Recommendation', desc: "We'll recommend the right package or add-ons based on your vehicle and goals.", icon: ClipboardList },
+            { step: '03', title: 'Detail Day', desc: 'Your vehicle is cleaned, restored, and protected using a careful step-by-step process.', icon: Calendar },
+            { step: '04', title: 'Final Walkthrough', desc: 'We review the work with you and share care tips for keeping it clean longer.', icon: CircleCheck },
+          ].map((item) => (
+            <article class="flex h-full flex-col rounded-xl border border-white/10 bg-surface-soft p-5">
+              <div class="mb-3 flex items-center gap-3">
+                <span class="text-xs font-bold text-accent">{item.step}</span>
+                <item.icon class="h-4 w-4 text-accent" aria-hidden="true" />
+              </div>
+              <h3 class="text-base font-bold text-text">{item.title}</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-text-muted">{item.desc}</p>
+            </article>
+          ))
+        }
+      </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <img src={images.detailerAtWork02} alt="Detailer working on vehicle exterior" class="aspect-square rounded-xl object-cover" loading="lazy" />
-          <img src={images.detailerAtWork03} alt="Detailer polishing vehicle paint" class="aspect-square rounded-xl object-cover" loading="lazy" />
-          <img src={images.drying} alt="Drying vehicle after detail" class="aspect-square rounded-xl object-cover" loading="lazy" />
-          <img src={images.pressureWash} alt="Pressure washing vehicle" class="aspect-square rounded-xl object-cover" loading="lazy" />
-        </div>
+      <div class="mt-8 lg:hidden">
+        <img
+          src={images.detailerAtWork02}
+          alt="Detailer working on vehicle exterior"
+          class="h-56 w-full rounded-xl border border-accent/30 object-cover shadow-glow-sm sm:h-72"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
@@ -400,7 +428,7 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
   <!-- 10. Gallery Preview -->
   <section id="gallery" class="section-padding bg-surface">
     <div class="container-narrow">
-      <div class="mx-auto mb-12 max-w-3xl text-center">
+      <div class="mx-auto mb-6 max-w-3xl text-center">
         <SectionEyebrow class="mb-4 inline-block">Gallery</SectionEyebrow>
         <h2 class="text-3xl font-bold text-text sm:text-4xl">Recent Work Style Gallery</h2>
         <p class="mt-4 text-text-muted">

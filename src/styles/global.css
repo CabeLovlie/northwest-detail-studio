@@ -32,6 +32,10 @@
   :where(#reviews, #faq) {
     scroll-margin-top: 6rem;
   }
+
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
 }
 
 @layer components {

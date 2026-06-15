@@ -15,12 +15,16 @@ const items = limit ? galleryItems.slice(0, limit) : galleryItems;
 <div id={id}>
   {
     showFilters && (
-      <div class="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter gallery">
+      <div
+        class="gallery-filters -mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0"
+        role="group"
+        aria-label="Filter gallery"
+      >
         {
           galleryFilters.map((filter) => (
             <button
               type="button"
-              class="gallery-filter rounded-full border border-white/15 bg-surface-soft px-4 py-2 text-sm font-medium text-text-muted transition-all hover:border-accent/40 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent data-[active=true]:border-accent data-[active=true]:bg-accent-soft data-[active=true]:text-accent"
+              class="gallery-filter shrink-0 rounded-full border border-white/15 bg-surface-soft px-4 py-2 text-sm font-medium text-text-muted transition-all hover:border-accent/40 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent data-[active=true]:border-accent data-[active=true]:bg-accent-soft data-[active=true]:text-accent"
               data-filter={filter.id}
               data-active={filter.id === 'all' ? 'true' : 'false'}
             >
