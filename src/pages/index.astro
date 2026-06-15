@@ -310,6 +310,7 @@ import ChevronDown from '@lucide/astro/icons/chevron-down';
               <p class="text-sm italic text-text-muted">{item.prompt}</p>
               <h3 class="mt-2 text-lg font-bold text-text group-hover:text-accent">{item.pkg}</h3>
               <p class="mt-2 text-sm text-text-muted">{item.desc}</p>
+              <span class="mt-4 inline-block text-sm font-semibold text-accent group-hover:text-accent-strong">View recommendation →</span>
             </a>
           ))
         }
@@ -387,51 +388,59 @@ import ChevronDown from '@lucide/astro/icons/chevron-down';
   <!-- 9. Process -->
   <section class="section-padding !py-12 lg:!py-16">
     <div class="container-narrow">
-      <div class="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-12">
+        <!-- Left: heading + guided step flow -->
         <div>
           <SectionEyebrow class="mb-4">Our Process</SectionEyebrow>
           <h2 class="text-3xl font-bold text-text sm:text-4xl">A Simple Process From Quote to Final Walkthrough</h2>
           <p class="mt-4 text-text-muted">
             From the first quote request to the final walkthrough, every detail is built around clear expectations, careful work, and visible results.
           </p>
+
+          <ol class="mt-8">
+            {
+              [
+                { step: '01', title: 'Send Vehicle Details', desc: "Tell us your vehicle type, condition, and the services you're interested in.", icon: MessageSquare },
+                { step: '02', title: 'Get a Clear Recommendation', desc: "We'll recommend the right package or add-ons based on your vehicle and goals.", icon: ClipboardList },
+                { step: '03', title: 'Detail Day', desc: 'Your vehicle is cleaned, restored, and protected using a careful step-by-step process.', icon: Calendar },
+                { step: '04', title: 'Final Walkthrough', desc: 'We review the work with you and share care tips for keeping it clean longer.', icon: CircleCheck },
+              ].map((item, i, arr) => (
+                <li>
+                  <article class="flex items-start gap-4 rounded-xl border border-white/10 bg-surface-soft p-5">
+                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-accent-soft text-xs font-bold text-accent">
+                      {item.step}
+                    </span>
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <item.icon class="h-4 w-4 text-accent" aria-hidden="true" />
+                        <h3 class="text-base font-bold text-text">{item.title}</h3>
+                      </div>
+                      <p class="mt-1.5 text-sm leading-relaxed text-text-muted">{item.desc}</p>
+                    </div>
+                  </article>
+                  {i < arr.length - 1 && (
+                    <div class="flex justify-center py-1.5" aria-hidden="true">
+                      <span class="flex flex-col items-center">
+                        <span class="h-4 w-px bg-gradient-to-b from-accent/50 to-accent/20" />
+                        <ChevronDown class="h-4 w-4 text-accent/70" />
+                      </span>
+                    </div>
+                  )}
+                </li>
+              ))
+            }
+          </ol>
         </div>
-        <div class="hidden lg:block">
+
+        <!-- Right: single supporting image, sticky on desktop, below steps on mobile -->
+        <div class="lg:sticky lg:top-24">
           <img
             src={images.detailerAtWork02}
             alt="Detailer working on vehicle exterior"
-            class="h-full min-h-[280px] w-full rounded-xl border border-accent/30 object-cover shadow-glow-sm"
+            class="h-full max-h-[640px] min-h-[320px] w-full rounded-2xl border border-accent/30 object-cover shadow-glow-sm"
             loading="lazy"
           />
         </div>
-      </div>
-
-      <div class="mt-8 grid gap-4 sm:grid-cols-2">
-        {
-          [
-            { step: '01', title: 'Send Vehicle Details', desc: "Tell us your vehicle type, condition, and the services you're interested in.", icon: MessageSquare },
-            { step: '02', title: 'Get a Clear Recommendation', desc: "We'll recommend the right package or add-ons based on your vehicle and goals.", icon: ClipboardList },
-            { step: '03', title: 'Detail Day', desc: 'Your vehicle is cleaned, restored, and protected using a careful step-by-step process.', icon: Calendar },
-            { step: '04', title: 'Final Walkthrough', desc: 'We review the work with you and share care tips for keeping it clean longer.', icon: CircleCheck },
-          ].map((item) => (
-            <article class="flex h-full flex-col rounded-xl border border-white/10 bg-surface-soft p-5">
-              <div class="mb-3 flex items-center gap-3">
-                <span class="text-xs font-bold text-accent">{item.step}</span>
-                <item.icon class="h-4 w-4 text-accent" aria-hidden="true" />
-              </div>
-              <h3 class="text-base font-bold text-text">{item.title}</h3>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-text-muted">{item.desc}</p>
-            </article>
-          ))
-        }
-      </div>
-
-      <div class="mt-8 lg:hidden">
-        <img
-          src={images.detailerAtWork02}
-          alt="Detailer working on vehicle exterior"
-          class="h-56 w-full rounded-xl border border-accent/30 object-cover shadow-glow-sm sm:h-72"
-          loading="lazy"
-        />
       </div>
     </div>
   </section>
@@ -441,7 +450,7 @@ import ChevronDown from '@lucide/astro/icons/chevron-down';
     <div class="container-narrow">
       <div class="mx-auto mb-6 max-w-3xl text-center">
         <SectionEyebrow class="mb-4 inline-block">Gallery</SectionEyebrow>
-        <h2 class="text-3xl font-bold text-text sm:text-4xl">Recent Work Style Gallery</h2>
+        <h2 class="text-3xl font-bold text-text sm:text-4xl">Service Style Gallery</h2>
         <p class="mt-4 text-text-muted">
           A visual preview of the services Northwest Detail Studio is built around.
         </p>
