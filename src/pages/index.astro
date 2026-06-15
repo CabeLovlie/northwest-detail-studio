@@ -394,8 +394,8 @@ import ChevronDown from '@lucide/astro/icons/chevron-down';
         From the first quote request to the final walkthrough, every detail is built around clear expectations, careful work, and visible results.
       </p>
 
-      <div class="mt-8 grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12">
-        <ol>
+      <div class="mt-8 flex flex-col gap-10 lg:flex-row lg:items-stretch lg:gap-12">
+        <ol class="lg:min-w-0 lg:flex-1">
           {
             [
               { step: '01', title: 'Send Vehicle Details', desc: "Tell us your vehicle type, condition, and the services you're interested in.", icon: MessageSquare },
@@ -429,11 +429,11 @@ import ChevronDown from '@lucide/astro/icons/chevron-down';
           }
         </ol>
 
-        <div class="h-full min-h-0">
+        <div class="relative h-72 min-h-0 overflow-hidden rounded-2xl border border-accent/30 shadow-glow-sm sm:h-80 lg:h-auto lg:min-h-0 lg:flex-1 lg:self-stretch">
           <img
             src={images.processSection}
             alt="Black Mercedes-Benz covered in soap suds during a professional exterior wash and detail process"
-            class="h-72 w-full rounded-2xl border border-accent/30 object-cover shadow-glow-sm sm:h-80 lg:h-full"
+            class="h-full w-full object-cover lg:absolute lg:inset-0"
             loading="lazy"
           />
         </div>
