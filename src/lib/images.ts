@@ -41,6 +41,7 @@ export const images = {
   detailerAtWork05: '/images/nw-detail-studio-detailer-at-work-05.jpg',
   drying: '/images/nw-detail-studio-drying.jpg',
   pressureWash: '/images/nw-detail-studio-pressure-wash.jpg',
+  processSection: '/images/nw-detail-studio-process-section.jpg',
   headlightCloseUp: '/images/nw-detail-studio-headlight-close-up.jpg',
 } as const;
 
