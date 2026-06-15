@@ -5,6 +5,7 @@ import Button from './Button.astro';
 const navLinks = [
   { href: '/services', label: 'Services' },
   { href: '/packages', label: 'Packages' },
+  { href: '/guidance', label: 'Guidance' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/ceramic-coating', label: 'Ceramic Coating' },
   { href: '/about', label: 'About' },
@@ -23,13 +24,13 @@ const currentPath = Astro.url.pathname;
       <span class="hidden text-xs text-text-muted sm:block">{site.location}</span>
     </a>
 
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+    <nav class="hidden items-center gap-0.5 lg:flex xl:gap-1" aria-label="Main navigation">
       {
         navLinks.map((link) => (
           <a
             href={link.href}
             class:list={[
-              'rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
+              'rounded-lg px-2 py-2 text-[13px] font-medium transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent xl:px-3 xl:text-sm',
               currentPath === link.href
                 ? 'text-accent'
                 : 'text-text-muted',

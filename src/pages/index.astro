@@ -25,7 +25,7 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
 
 <Base title={`${site.name} | Premium Auto Detailing in Auburn, WA`}>
   <!-- 1. Hero -->
-  <section class="relative min-h-[100svh] overflow-hidden">
+  <section class="relative h-[100svh] min-h-[100svh] overflow-hidden">
     <img
       src={images.hero}
       alt="Premium detailed vehicle with glossy finish in studio lighting"
@@ -35,7 +35,7 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
     <div class="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
     <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
 
-    <div class="container-narrow relative flex min-h-[100svh] items-center px-4 py-20 sm:px-6 lg:px-8">
+    <div class="container-narrow relative z-10 flex h-full items-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div class="max-w-2xl">
         <SectionEyebrow class="mb-6">Auburn, WA / South Sound</SectionEyebrow>
         <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-text sm:text-5xl lg:text-6xl">
@@ -55,12 +55,12 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
           <li class="flex items-center gap-2"><Ship class="h-4 w-4 text-accent" aria-hidden="true" /> Boat &amp; RV detailing</li>
         </ul>
       </div>
-
-      <aside class="absolute bottom-8 right-4 hidden max-w-xs glass-card p-5 lg:block xl:right-8">
-        <p class="text-sm font-bold text-accent">Ceramic Coating Available</p>
-        <p class="mt-1 text-sm text-text-muted">Long-term gloss, easier washes, stronger paint protection.</p>
-      </aside>
     </div>
+
+    <aside class="absolute bottom-8 right-4 z-10 hidden max-w-xs glass-card p-5 lg:block xl:right-8">
+      <p class="text-sm font-bold text-accent">Ceramic Coating Available</p>
+      <p class="mt-1 text-sm text-text-muted">Long-term gloss, easier washes, stronger paint protection.</p>
+    </aside>
   </section>
 
   <!-- 2. Trust / Proof Bar -->
