@@ -289,10 +289,10 @@ import CircleCheck from '@lucide/astro/icons/circle-check';
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {
           [
-            { prompt: 'My car is mostly clean', pkg: 'Refresh Detail', desc: 'Best for regular upkeep, light dust, and vehicles that are already maintained.', href: '/quote?service=refresh', icon: Car },
-            { prompt: 'My interior needs help', pkg: 'Deep Clean Detail', desc: 'Best for stains, crumbs, pet hair, spills, odor, and family vehicles.', href: '/quote?service=deep-clean', icon: Sparkles },
-            { prompt: 'My paint looks dull or swirled', pkg: 'Paint Correction', desc: 'Best for haze, swirl marks, oxidation, and paint that has lost its depth.', href: '/quote?service=paint-correction', icon: Gem },
-            { prompt: 'I want long-term protection', pkg: 'Ceramic Coating', desc: 'Best for gloss, protection, easier washes, and long-term maintenance.', href: '/ceramic-coating', icon: Shield },
+            { prompt: 'My car is mostly clean', pkg: 'Refresh Detail', desc: 'Best for regular upkeep, light dust, and vehicles that are already maintained.', href: '/guidance#mostly-clean', icon: Car },
+            { prompt: 'My interior needs help', pkg: 'Deep Clean Detail', desc: 'Best for stains, crumbs, pet hair, spills, odor, and family vehicles.', href: '/guidance#interior-needs-help', icon: Sparkles },
+            { prompt: 'My paint looks dull or swirled', pkg: 'Paint Correction', desc: 'Best for haze, swirl marks, oxidation, and paint that has lost its depth.', href: '/guidance#dull-or-swirled-paint', icon: Gem },
+            { prompt: 'I want long-term protection', pkg: 'Ceramic Coating', desc: 'Best for gloss, protection, easier washes, and long-term maintenance.', href: '/guidance#long-term-protection', icon: Shield },
           ].map((item) => (
             <a href={item.href} class="glass-card group block p-6 transition-all hover:border-accent/30 hover:shadow-glow-sm">
               <item.icon class="mb-4 h-6 w-6 text-accent" aria-hidden="true" />

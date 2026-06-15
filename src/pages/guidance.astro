@@ -1,0 +1,386 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import Card from '../components/Card.astro';
+import { images } from '../lib/images';
+import { site } from '../lib/site';
+import Car from '@lucide/astro/icons/car';
+import Sparkles from '@lucide/astro/icons/sparkles';
+import Gem from '@lucide/astro/icons/gem';
+import Shield from '@lucide/astro/icons/shield';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+
+const quickNav = [
+  {
+    id: 'mostly-clean',
+    title: 'Mostly Clean',
+    desc: 'For maintained vehicles that need regular upkeep.',
+    icon: Car,
+  },
+  {
+    id: 'interior-needs-help',
+    title: 'Interior Needs Help',
+    desc: 'For stains, pet hair, crumbs, odor, and daily-driver buildup.',
+    icon: Sparkles,
+  },
+  {
+    id: 'dull-or-swirled-paint',
+    title: 'Dull or Swirled Paint',
+    desc: 'For haze, swirl marks, oxidation, and paint that lacks depth.',
+    icon: Gem,
+  },
+  {
+    id: 'long-term-protection',
+    title: 'Long-Term Protection',
+    desc: 'For ceramic coating, stronger gloss, and easier washing.',
+    icon: Shield,
+  },
+];
+
+const summaryRows = [
+  { condition: 'Light dust, road film, maintained vehicle', recommendation: 'Refresh Detail' },
+  { condition: 'Pet hair, stains, crumbs, odor', recommendation: 'Deep Clean Detail' },
+  { condition: 'Dull paint, swirls, haze, oxidation', recommendation: 'Paint Correction / Signature Detail' },
+  { condition: 'Want easier washing and longer protection', recommendation: 'Ceramic Coating' },
+];
+---
+
+<Base
+  title={`Find the Right Detail | ${site.name}`}
+  description="Match your vehicle's condition to the right detailing service — maintenance refresh, deep interior clean, paint correction, or ceramic coating."
+>
+  <!-- 1. Hero -->
+  <section class="relative min-h-[70svh] overflow-hidden">
+    <img
+      src={images.darkStudio}
+      alt="Premium detailing studio with professional lighting"
+      class="absolute inset-0 h-full w-full object-cover"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/50" />
+    <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20" />
+
+    <div class="container-narrow relative flex min-h-[70svh] items-center px-4 py-20 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <SectionEyebrow class="mb-4">Vehicle Guidance</SectionEyebrow>
+        <h1 class="text-4xl font-bold leading-tight text-text sm:text-5xl">Find the Right Detail for Your Vehicle</h1>
+        <p class="mt-6 text-lg leading-relaxed text-text-muted">
+          Every vehicle needs something different. Use this guide to match what you're seeing — light dust, interior buildup, dull paint, or long-term protection goals — to the service that makes the most sense.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href="/#quote">Get a Recommendation</Button>
+          <Button href="/packages" variant="secondary">View Packages</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Quick Condition Navigation -->
+  <section class="border-y border-white/10 bg-surface py-10 sm:py-12" aria-label="Quick condition navigation">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          quickNav.map((item) => (
+            <a
+              href={`#${item.id}`}
+              class="group block rounded-xl border border-white/10 bg-surface-soft p-5 transition-all hover:border-accent/40 hover:shadow-glow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <item.icon class="mb-3 h-5 w-5 text-accent" aria-hidden="true" />
+              <h2 class="text-base font-bold text-text group-hover:text-accent">{item.title}</h2>
+              <p class="mt-1 text-sm text-text-muted">{item.desc}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Mostly Clean -->
+  <section id="mostly-clean" class="section-padding">
+    <div class="container-narrow">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <SectionEyebrow class="mb-4">Mostly Clean</SectionEyebrow>
+          <h2 class="text-3xl font-bold text-text sm:text-4xl">My Car Is Mostly Clean</h2>
+          <p class="mt-2 text-sm font-medium text-accent">Best for vehicles that are already maintained but need a professional reset.</p>
+          <p class="mt-4 text-text-muted">
+            If your vehicle is already in decent shape, you may not need a full deep clean. A maintenance-focused detail can remove light dust, road film, fingerprints, and everyday buildup while keeping the interior and exterior easy to maintain.
+          </p>
+
+          <Card class="mt-6 border-accent/20 bg-accent-soft/30 !p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Recommended Service</p>
+            <h3 class="mt-2 text-lg font-bold text-text">Refresh Detail</h3>
+            <p class="mt-2 text-sm text-text-muted">
+              Built for maintained vehicles that need a clean reset without the time or cost of a full deep clean.
+            </p>
+            <div class="mt-4">
+              <Button href="/packages#refresh" size="sm">View Refresh Detail</Button>
+            </div>
+          </Card>
+        </div>
+
+        <div class="space-y-3">
+          <img src={images.suvClean} alt="Clean SUV after maintenance detail" class="aspect-[4/3] w-full rounded-xl object-cover" loading="lazy" />
+          <div class="grid grid-cols-2 gap-3">
+            <img src={images.drying} alt="Drying vehicle after hand wash" class="aspect-square rounded-xl object-cover" loading="lazy" />
+            <img src={images.washMitt} alt="Hand washing with wash mitt" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Common Signs</h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Light dust on interior surfaces</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Mild road film</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Dirty windows</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Light wheel grime</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Floor mats need a quick reset</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Paint still has decent gloss</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Optional Upgrades</h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Paint sealant</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Wheel detail</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Interior protectant</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Maintenance schedule</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Interior Needs Help -->
+  <section id="interior-needs-help" class="section-padding bg-surface">
+    <div class="container-narrow">
+      <div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-12">
+        <div class="order-2 lg:order-1 grid grid-cols-2 gap-3">
+          <img src={images.dirtyInterior} alt="Dirty vehicle interior with stains and buildup" class="col-span-2 aspect-[2/1] rounded-xl object-cover" loading="lazy" />
+          <img src={images.interiorVacuuming} alt="Deep vacuuming during interior detail" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.interiorSteamCleaning} alt="Steam cleaning interior surfaces" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.suvInteriorClean} alt="Clean SUV interior after deep reset" class="col-span-2 aspect-[2/1] rounded-xl object-cover" loading="lazy" />
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <SectionEyebrow class="mb-4">Interior Needs Help</SectionEyebrow>
+          <h2 class="text-3xl font-bold text-text sm:text-4xl">My Interior Needs Help</h2>
+          <p class="mt-2 text-sm font-medium text-accent">Best for daily drivers, family vehicles, pets, stains, crumbs, and odor.</p>
+          <p class="mt-4 text-text-muted">
+            Interior buildup happens fast, especially in daily drivers. Food crumbs, pet hair, spills, wet shoes, dust, and normal use can make the cabin feel worn out even when the vehicle itself is in good shape.
+          </p>
+
+          <Card class="mt-6 border-accent/20 bg-accent-soft/30 !p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Recommended Service</p>
+            <h3 class="mt-2 text-lg font-bold text-text">Deep Clean Detail</h3>
+            <p class="mt-2 text-sm text-text-muted">
+              Restores the cabin with thorough vacuuming, steam cleaning, stain treatment, upholstery or leather care, and detailed surface cleaning.
+            </p>
+            <div class="mt-4">
+              <Button href="/packages#deep-clean" size="sm">Get an Interior Detail Quote</Button>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Common Signs</h3>
+          <ul class="grid gap-2 text-sm text-text-muted sm:grid-cols-2">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Pet hair in carpet or seats</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Sticky cupholders</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Crumbs between seats</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Stains on fabric or mats</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Odor buildup</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Dusty vents and dashboard</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Dirty door panels</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Cloudy interior glass</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Optional Upgrades</h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Heavy pet hair removal</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Upholstery extraction</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Ozone odor treatment</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Leather conditioning</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Floor mat deep clean</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Dull or Swirled Paint -->
+  <section id="dull-or-swirled-paint" class="section-padding">
+    <div class="container-narrow">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <SectionEyebrow class="mb-4">Paint Condition</SectionEyebrow>
+          <h2 class="text-3xl font-bold text-text sm:text-4xl">My Paint Looks Dull or Swirled</h2>
+          <p class="mt-2 text-sm font-medium text-accent">Best for paint that has lost gloss, clarity, or reflection.</p>
+          <p class="mt-4 text-text-muted">
+            Dull or swirled paint usually comes from automatic car washes, improper washing, oxidation, road grime, and years of normal exposure. A standard exterior wash can clean the surface, but it will not correct defects in the paint.
+          </p>
+
+          <Card class="mt-6 border-accent/20 bg-accent-soft/30 !p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Recommended Service</p>
+            <h3 class="mt-2 text-lg font-bold text-text">Paint Correction or Signature Detail</h3>
+            <p class="mt-2 text-sm text-text-muted">
+              Machine polishing reduces visible defects and restores depth, gloss, and clarity. Signature Detail fits when the vehicle also needs a full interior and exterior reset.
+            </p>
+            <div class="mt-4">
+              <Button href="/packages#signature" size="sm">Explore Paint Correction</Button>
+            </div>
+          </Card>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <img src={images.paintBad} alt="Paint with swirls and haze before correction" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.polishCloseup} alt="Machine polishing close-up" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.inspectionLight} alt="Paint inspection under specialized lighting" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.paintGood} alt="Restored glossy paint after correction" class="aspect-square rounded-xl object-cover" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Common Signs</h3>
+          <ul class="grid gap-2 text-sm text-text-muted sm:grid-cols-2">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Swirl marks in sunlight</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Hazy reflections</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Dull paint</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Light oxidation</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Fine scratches</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Water spots</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Paint feels rough after washing</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Optional Upgrades</h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />One-step polish</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Multi-step correction</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Paint sealant</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Ceramic coating prep</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Water spot treatment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Long-Term Protection -->
+  <section id="long-term-protection" class="section-padding bg-surface">
+    <div class="container-narrow">
+      <div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-12">
+        <div class="order-2 lg:order-1 grid grid-cols-2 gap-3">
+          <img src={images.ceramicCoatingCloseUpApplication} alt="Ceramic coating application close-up" class="col-span-2 aspect-[2/1] rounded-xl object-cover" loading="lazy" />
+          <img src={images.ceramicCoatingReflection} alt="Glossy ceramic-coated paint reflection" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.waterBeading} alt="Water beading on protected paint" class="aspect-square rounded-xl object-cover" loading="lazy" />
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <SectionEyebrow class="mb-4">Long-Term Protection</SectionEyebrow>
+          <h2 class="text-3xl font-bold text-text sm:text-4xl">I Want Long-Term Protection</h2>
+          <p class="mt-2 text-sm font-medium text-accent">Best for drivers who want deeper gloss, easier washing, and stronger paint protection.</p>
+          <p class="mt-4 text-text-muted">
+            If you want your vehicle to stay cleaner longer and be easier to wash, ceramic coating may be the right fit. It adds a durable protective layer that improves gloss, water behavior, and resistance to everyday contamination.
+          </p>
+
+          <Card class="mt-6 border-accent/20 bg-accent-soft/30 !p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-accent">Recommended Service</p>
+            <h3 class="mt-2 text-lg font-bold text-text">Ceramic Coating</h3>
+            <p class="mt-2 text-sm text-text-muted">
+              Designed for long-term paint protection and gloss. Proper prep matters, so coating services often include decontamination and polishing before application.
+            </p>
+            <div class="mt-4">
+              <Button href="/ceramic-coating" size="sm">Explore Ceramic Coating</Button>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Common Signs &amp; Goals</h3>
+          <ul class="grid gap-2 text-sm text-text-muted sm:grid-cols-2">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />You want easier maintenance washes</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />You want stronger gloss</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Your vehicle is new or recently corrected</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />You park outside</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />You own a dark-colored vehicle</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />You want better water beading</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />You want longer-lasting protection than wax or sealant</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-text">Optional Upgrades</h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Gloss enhancement polish</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Paint correction before coating</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Wheel coating</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Glass coating</li>
+            <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Maintenance wash plan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Recommendation Summary -->
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="mx-auto mb-8 max-w-2xl text-center">
+        <SectionEyebrow class="mb-4 inline-block">At a Glance</SectionEyebrow>
+        <h2 class="text-3xl font-bold text-text sm:text-4xl">Quick Recommendation Guide</h2>
+      </div>
+
+      <div class="overflow-hidden rounded-xl border border-white/10">
+        <div class="hidden bg-surface-soft px-5 py-3 text-xs font-semibold uppercase tracking-wider text-accent sm:grid sm:grid-cols-2 sm:gap-4">
+          <span>What You're Seeing</span>
+          <span>Best Starting Point</span>
+        </div>
+        {
+          summaryRows.map((row, i) => (
+            <div
+              class:list={[
+                'grid gap-2 border-t border-white/10 px-5 py-4 sm:grid-cols-2 sm:items-center sm:gap-6',
+                i === 0 ? 'border-t-0' : '',
+                i % 2 === 0 ? 'bg-surface-soft/40' : 'bg-surface/60',
+              ]}
+            >
+              <p class="text-sm text-text-muted">{row.condition}</p>
+              <p class="text-sm font-semibold text-text">{row.recommendation}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 text-center">
+        <Button href="/#quote">Still Not Sure? Send Photos</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Final CTA -->
+  <section class="section-padding bg-surface">
+    <div class="container-narrow">
+      <Card class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl font-bold text-text sm:text-4xl">Still Not Sure? We'll Help You Choose.</h2>
+        <p class="mx-auto mt-4 max-w-xl text-text-muted">
+          Send a few photos and a short description of your vehicle's condition. We'll recommend the service that makes the most sense.
+        </p>
+        <div class="mt-8">
+          <Button href="/#quote">
+            Get My Recommendation
+            <ArrowRight class="h-4 w-4" aria-hidden="true" />
+          </Button>
+        </div>
+      </Card>
+    </div>
+  </section>
+</Base>
