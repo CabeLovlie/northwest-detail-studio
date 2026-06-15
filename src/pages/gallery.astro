@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import { site } from '../lib/site';
+---
+
+<Base title={`Gallery | ${site.name}`} description="Browse interior, exterior, paint correction, ceramic coating, wheel, boat, and RV detailing work from Northwest Detail Studio.">
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <SectionEyebrow class="mb-4 inline-block">Gallery</SectionEyebrow>
+        <h1 class="text-4xl font-bold text-text sm:text-5xl">Recent Work Style Gallery</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          A visual preview of the services Northwest Detail Studio is built around.
+        </p>
+      </div>
+      <GalleryGrid id="gallery-page-grid" showFilters={true} />
+    </div>
+  </section>
+</Base>

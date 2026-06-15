@@ -1,0 +1,127 @@
+---
+interface Props {
+  title: string;
+  beforeSrc: string;
+  afterSrc: string;
+  beforeAlt: string;
+  afterAlt: string;
+  description: string;
+  index: number;
+}
+
+const { title, beforeSrc, afterSrc, beforeAlt, afterAlt, description, index } = Astro.props;
+const id = `ba-slider-${index}`;
+---
+
+<article class="glass-card overflow-hidden">
+  <div class="border-b border-white/10 px-6 py-4">
+    <h3 class="text-lg font-bold text-text">{title}</h3>
+    <p class="mt-1 text-sm text-text-muted">{description}</p>
+  </div>
+  <div
+    class="ba-slider relative aspect-[4/3] cursor-ew-resize select-none overflow-hidden"
+    data-slider={id}
+    role="img"
+    aria-label={`Before and after comparison: ${title}`}
+  >
+    <img
+      src={afterSrc}
+      alt={afterAlt}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="lazy"
+      draggable="false"
+    />
+    <div class="ba-before absolute inset-0 overflow-hidden" style="width: 50%">
+      <img
+        src={beforeSrc}
+        alt={beforeAlt}
+        class="ba-before-img absolute inset-y-0 left-0 h-full object-cover"
+        loading="lazy"
+        draggable="false"
+      />
+    </div>
+    <div
+      class="ba-handle absolute inset-y-0 z-10 w-1 -translate-x-1/2 bg-accent shadow-glow"
+      style="left: 50%"
+      aria-hidden="true"
+    >
+      <div class="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-accent bg-background shadow-glow">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
+        </svg>
+      </div>
+    </div>
+    <span class="absolute left-3 top-3 rounded bg-background/80 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-text backdrop-blur-sm">Before</span>
+    <span class="absolute right-3 top-3 rounded bg-accent/90 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-background backdrop-blur-sm">After</span>
+  </div>
+  <p class="px-6 py-3 text-xs text-text-muted italic">Sample comparison — not a real client before/after.</p>
+</article>
+
+<script>
+  function initSliders() {
+    document.querySelectorAll('.ba-slider').forEach((slider) => {
+      const before = slider.querySelector('.ba-before') as HTMLElement;
+      const handle = slider.querySelector('.ba-handle') as HTMLElement;
+      const beforeImg = slider.querySelector('.ba-before-img') as HTMLImageElement;
+      if (!before || !handle || !beforeImg) return;
+
+      const syncBeforeWidth = () => {
+        beforeImg.style.width = `${slider.clientWidth}px`;
+      };
+      syncBeforeWidth();
+      window.addEventListener('resize', syncBeforeWidth);
+
+      let dragging = false;
+
+      const setPosition = (clientX: number) => {
+        const rect = slider.getBoundingClientRect();
+        let x = clientX - rect.left;
+        x = Math.max(0, Math.min(x, rect.width));
+        const pct = (x / rect.width) * 100;
+        before.style.width = `${pct}%`;
+        handle.style.left = `${pct}%`;
+      };
+
+      const onMove = (e: MouseEvent | TouchEvent) => {
+        if (!dragging) return;
+        const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+        setPosition(clientX);
+      };
+
+      slider.addEventListener('mousedown', (e) => {
+        dragging = true;
+        setPosition(e.clientX);
+      });
+      slider.addEventListener('touchstart', (e) => {
+        dragging = true;
+        setPosition(e.touches[0].clientX);
+      }, { passive: true });
+
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('touchmove', onMove, { passive: true });
+      window.addEventListener('mouseup', () => { dragging = false; });
+      window.addEventListener('touchend', () => { dragging = false; });
+
+      slider.addEventListener('keydown', (e) => {
+        const event = e as KeyboardEvent;
+        const current = parseFloat(handle.style.left || '50');
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          const pct = Math.max(0, current - 5);
+          before.style.width = `${pct}%`;
+          handle.style.left = `${pct}%`;
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          const pct = Math.min(100, current + 5);
+          before.style.width = `${pct}%`;
+          handle.style.left = `${pct}%`;
+        }
+      });
+
+      slider.setAttribute('tabindex', '0');
+    });
+  }
+
+  initSliders();
+  document.addEventListener('astro:page-load', initSliders);
+</script>

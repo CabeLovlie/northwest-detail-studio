@@ -1,0 +1,19 @@
+---
+interface Props {
+  quote: string;
+  service: string;
+  sample?: boolean;
+}
+
+const { quote, service, sample = true } = Astro.props;
+---
+
+<blockquote class="glass-card flex h-full flex-col p-6 sm:p-8">
+  <p class="mb-4 flex-1 text-base leading-relaxed text-text">&ldquo;{quote}&rdquo;</p>
+  <footer class="border-t border-white/10 pt-4">
+    <cite class="not-italic">
+      <span class="block text-sm font-semibold text-accent">{service}</span>
+      {sample && <span class="mt-1 block text-xs text-text-muted">Sample review</span>}
+    </cite>
+  </footer>
+</blockquote>

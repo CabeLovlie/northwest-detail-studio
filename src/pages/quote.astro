@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { site } from '../lib/site';
+---
+
+<Base title={`Get a Quote | ${site.name}`} description="Request a free detailing quote for your car, truck, SUV, boat, or RV in Auburn, WA / South Sound.">
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="mx-auto mb-10 max-w-2xl text-center">
+        <SectionEyebrow class="mb-4 inline-block">Quote</SectionEyebrow>
+        <h1 class="text-4xl font-bold text-text sm:text-5xl">Get Your Detail Quote</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Send a few details about your vehicle and we'll recommend the right service.
+        </p>
+      </div>
+      <QuoteForm id="quote-form-page" />
+    </div>
+  </section>
+</Base>

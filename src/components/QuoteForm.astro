@@ -1,0 +1,189 @@
+---
+interface Props {
+  id?: string;
+  showHeading?: boolean;
+}
+
+const { id = 'quote-form', showHeading = false } = Astro.props;
+---
+
+<section id={id} class={showHeading ? 'section-padding' : ''}>
+  {
+    showHeading && (
+      <div class="container-narrow mb-10 text-center">
+        <h2 class="text-3xl font-bold text-text sm:text-4xl">Ready for a Cleaner, Glossier Vehicle?</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-text-muted">
+          Send a few details about your vehicle and we'll recommend the right service.
+        </p>
+      </div>
+    )
+  }
+
+  <form class="glass-card mx-auto max-w-3xl p-6 sm:p-10" action="#" method="post">
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div>
+        <label for="name" class="mb-2 block text-sm font-medium text-text">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          autocomplete="name"
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text placeholder:text-text-muted/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+          placeholder="Your name"
+        />
+      </div>
+      <div>
+        <label for="phone" class="mb-2 block text-sm font-medium text-text">Phone</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          autocomplete="tel"
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text placeholder:text-text-muted/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+          placeholder="(253) 555-0142"
+        />
+      </div>
+      <div class="sm:col-span-2">
+        <label for="email" class="mb-2 block text-sm font-medium text-text">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text placeholder:text-text-muted/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+          placeholder="you@example.com"
+        />
+      </div>
+      <div class="sm:col-span-2">
+        <label for="vehicle" class="mb-2 block text-sm font-medium text-text">Vehicle year / make / model</label>
+        <input
+          type="text"
+          id="vehicle"
+          name="vehicle"
+          required
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text placeholder:text-text-muted/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+          placeholder="e.g. 2021 Toyota RAV4"
+        />
+      </div>
+      <div>
+        <label for="vehicle-type" class="mb-2 block text-sm font-medium text-text">Vehicle type</label>
+        <select
+          id="vehicle-type"
+          name="vehicle-type"
+          required
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+        >
+          <option value="">Select type</option>
+          <option value="car">Car</option>
+          <option value="truck">Truck</option>
+          <option value="suv">SUV</option>
+          <option value="boat">Boat</option>
+          <option value="rv">RV</option>
+        </select>
+      </div>
+      <div>
+        <label for="service" class="mb-2 block text-sm font-medium text-text">Service interested in</label>
+        <select
+          id="service"
+          name="service"
+          required
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+        >
+          <option value="">Select service</option>
+          <option value="refresh">Refresh Detail</option>
+          <option value="deep-clean">Deep Clean Detail</option>
+          <option value="signature">Signature Detail</option>
+          <option value="paint-correction">Paint Correction</option>
+          <option value="ceramic">Ceramic Coating</option>
+          <option value="boat-rv">Boat / RV Detail</option>
+          <option value="not-sure">Not sure yet</option>
+        </select>
+      </div>
+      <div>
+        <label for="condition" class="mb-2 block text-sm font-medium text-text">Vehicle condition</label>
+        <select
+          id="condition"
+          name="condition"
+          required
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+        >
+          <option value="">Select condition</option>
+          <option value="maintained">Maintained</option>
+          <option value="moderate">Moderate buildup</option>
+          <option value="heavy">Heavy soil</option>
+          <option value="pet-hair">Pet hair</option>
+          <option value="stains">Stains or odor</option>
+          <option value="paint">Paint swirls / haze</option>
+        </select>
+      </div>
+      <div>
+        <label for="preference" class="mb-2 block text-sm font-medium text-text">Mobile or drop-off</label>
+        <select
+          id="preference"
+          name="preference"
+          required
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+        >
+          <option value="">Select preference</option>
+          <option value="mobile">Mobile</option>
+          <option value="drop-off">Drop-off at studio</option>
+          <option value="either">Either works</option>
+        </select>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="date" class="mb-2 block text-sm font-medium text-text">Preferred date</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+        />
+      </div>
+      <div class="sm:col-span-2">
+        <label for="photos" class="mb-2 block text-sm font-medium text-text">Photo upload</label>
+        <div class="rounded-lg border border-dashed border-white/20 bg-surface-soft/50 px-4 py-8 text-center">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/*"
+            multiple
+            class="mx-auto block text-sm text-text-muted file:mr-4 file:rounded-lg file:border-0 file:bg-accent file:px-4 file:py-2 file:text-sm file:font-semibold file:text-background hover:file:bg-accent-strong"
+          />
+          <p class="mt-2 text-xs text-text-muted">Uploading photos helps us give a faster, more accurate recommendation.</p>
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="message" class="mb-2 block text-sm font-medium text-text">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          class="w-full rounded-lg border border-white/15 bg-surface-soft px-4 py-3 text-sm text-text placeholder:text-text-muted/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+          placeholder="Tell us about your vehicle, goals, or any concerns..."
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <button
+        type="submit"
+        class="inline-flex w-full items-center justify-center rounded-lg bg-accent px-8 py-3.5 text-base font-semibold text-background shadow-glow-sm transition-all hover:bg-accent-strong hover:shadow-glow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:w-auto"
+      >
+        Get My Detail Quote
+      </button>
+    </div>
+  </form>
+</section>
+
+<script>
+  document.querySelectorAll('form[action="#"]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you! This is a sample site — your quote request was not submitted.');
+    });
+  });
+</script>

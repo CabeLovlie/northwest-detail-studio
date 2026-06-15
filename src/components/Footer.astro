@@ -1,0 +1,73 @@
+---
+import { site } from '../lib/site';
+---
+
+<footer class="border-t border-white/10 bg-surface pb-24 lg:pb-0">
+  <div class="container-narrow section-padding">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <a href="/" class="text-xl font-bold text-text">{site.name}</a>
+        <p class="mt-3 max-w-md text-sm leading-relaxed text-text-muted">
+          Premium interior detailing, paint correction, ceramic coatings, and maintenance care for cars, trucks, boats, and RVs across the South Sound.
+        </p>
+        <p class="mt-4 text-xs text-text-muted italic">
+          Sample / concept business — portfolio showcase only.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text">Quick Links</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/services" class="text-text-muted transition-colors hover:text-accent">Services</a></li>
+          <li><a href="/packages" class="text-text-muted transition-colors hover:text-accent">Packages</a></li>
+          <li><a href="/ceramic-coating" class="text-text-muted transition-colors hover:text-accent">Ceramic Coating</a></li>
+          <li><a href="/gallery" class="text-text-muted transition-colors hover:text-accent">Gallery</a></li>
+          <li><a href="/about" class="text-text-muted transition-colors hover:text-accent">About</a></li>
+          <li><a href="/quote" class="text-text-muted transition-colors hover:text-accent">Get a Quote</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text">Contact</h2>
+        <ul class="space-y-2 text-sm text-text-muted">
+          <li>
+            <a href={site.phoneHref} class="transition-colors hover:text-accent">{site.phone}</a>
+          </li>
+          <li>
+            <a href={site.emailHref} class="transition-colors hover:text-accent">{site.email}</a>
+          </li>
+          <li>{site.location}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+      <p class="text-xs text-text-muted">
+        &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
+      </p>
+      <p class="text-xs text-text-muted">Concept portfolio site — not a real business listing.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile bottom CTA bar -->
+<div
+  class="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-surface/95 backdrop-blur-lg lg:hidden"
+  role="region"
+  aria-label="Quick contact actions"
+>
+  <div class="flex gap-3 p-3">
+    <a
+      href={site.phoneHref}
+      class="flex flex-1 items-center justify-center rounded-lg border border-white/20 bg-white/5 py-3 text-sm font-semibold text-text transition-colors hover:border-accent/50 hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    >
+      Call Now
+    </a>
+    <a
+      href="/quote"
+      class="flex flex-1 items-center justify-center rounded-lg bg-accent py-3 text-sm font-semibold text-background shadow-glow-sm transition-colors hover:bg-accent-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    >
+      Get Quote
+    </a>
+  </div>
+</div>

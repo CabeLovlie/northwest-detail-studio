@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import { images } from '../lib/images';
+import { site } from '../lib/site';
+import Shield from '@lucide/astro/icons/shield';
+import Droplets from '@lucide/astro/icons/droplets';
+import Sparkles from '@lucide/astro/icons/sparkles';
+import Check from '@lucide/astro/icons/check';
+---
+
+<Base title={`Ceramic Coating | ${site.name}`} description="Long-term gloss and paint protection with professional ceramic coating in Auburn, WA / South Sound.">
+  <!-- Hero -->
+  <section class="relative min-h-[60vh] overflow-hidden">
+    <img
+      src={images.ceramicCoatingCloseUpApplication}
+      alt="Close-up of ceramic coating being applied to vehicle paint"
+      class="absolute inset-0 h-full w-full object-cover"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/50" />
+    <div class="container-narrow relative flex min-h-[60vh] items-center px-4 py-20 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <SectionEyebrow class="mb-4">Ceramic Coating</SectionEyebrow>
+        <h1 class="text-4xl font-bold text-text sm:text-5xl">Long-Term Gloss and Paint Protection</h1>
+        <p class="mt-6 text-lg text-text-muted">
+          Ceramic coating adds durable protection, deep gloss, and easier maintenance for drivers who want their vehicle to stay cleaner longer.
+        </p>
+        <div class="mt-8">
+          <Button href="/quote">Request a Ceramic Coating Quote</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Ceramic Coating Does -->
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <SectionEyebrow class="mb-4">Benefits</SectionEyebrow>
+          <h2 class="text-3xl font-bold text-text">What Ceramic Coating Does</h2>
+          <ul class="mt-6 space-y-4">
+            {
+              [
+                'Adds a protective layer over your paint',
+                'Enhances gloss and depth',
+                'Improves water behavior and beading',
+                'Makes maintenance washes easier',
+                'Helps protect from environmental contamination',
+              ].map((item) => (
+                <li class="flex items-start gap-3 text-text-muted">
+                  <Check class="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <img src={images.ceramicCoatingReflection} alt="Glossy ceramic-coated paint reflection" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.ceramicCoatingWaterBeading} alt="Water beading on ceramic coated surface" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.waterBeading} alt="Water beading on protected paint" class="col-span-2 aspect-[2/1] rounded-xl object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coating Prep Matters -->
+  <section class="section-padding bg-surface">
+    <div class="container-narrow">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div class="order-2 lg:order-1 grid grid-cols-2 gap-3">
+          <img src={images.polishCloseup} alt="Machine polishing before ceramic coating" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          <img src={images.inspectionLight} alt="Paint inspection under specialized lighting" class="aspect-square rounded-xl object-cover" loading="lazy" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <SectionEyebrow class="mb-4">Preparation</SectionEyebrow>
+          <h2 class="text-3xl font-bold text-text">Coating Prep Matters</h2>
+          <p class="mt-4 text-text-muted">
+            Proper wash, decontamination, and polishing matter before coating. Surface prep ensures the ceramic coating bonds correctly and delivers the best gloss and protection.
+          </p>
+          <p class="mt-4 text-text-muted">
+            We inspect your paint under specialized lighting, remove embedded contaminants, and polish to enhance clarity before applying the coating.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Is Ceramic Coating Right for You? -->
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <SectionEyebrow class="mb-4 inline-block">Fit</SectionEyebrow>
+        <h2 class="text-3xl font-bold text-text">Is Ceramic Coating Right for You?</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          [
+            { title: 'New vehicles', desc: 'Protect fresh paint from day one and maintain that showroom gloss.', icon: Sparkles },
+            { title: 'Black & dark paint', desc: 'Enhance depth and make washing swirl-prone colors easier.', icon: Shield },
+            { title: 'Daily drivers & trucks', desc: 'Keep work vehicles cleaner longer with less effort.', icon: Droplets },
+            { title: 'Easier maintenance', desc: 'Ideal for owners who want simpler, faster washes.', icon: Droplets },
+            { title: 'Outdoor storage', desc: 'Extra protection for vehicles parked outside regularly.', icon: Shield },
+            { title: 'Long-term owners', desc: 'Great for keeping your vehicle looking its best for years.', icon: Sparkles },
+          ].map((item) => (
+            <Card>
+              <item.icon class="mb-4 h-6 w-6 text-accent" aria-hidden="true" />
+              <h3 class="mb-2 text-lg font-bold text-text">{item.title}</h3>
+              <p class="text-sm text-text-muted">{item.desc}</p>
+            </Card>
+          ))
+        }
+      </div>
+      <div class="mt-12 overflow-hidden rounded-2xl border border-accent/40 shadow-glow">
+        <img src={images.ceramicCoatingApplicator} alt="Applying ceramic coating with professional applicator" class="h-64 w-full object-cover lg:h-80" loading="lazy" />
+      </div>
+      <div class="mt-10 text-center">
+        <Button href="/quote">Request a Ceramic Coating Quote</Button>
+      </div>
+    </div>
+  </section>
+</Base>

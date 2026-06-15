@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import { images } from '../lib/images';
+import { site } from '../lib/site';
+---
+
+<Base title={`Services | ${site.name}`} description="Interior detailing, exterior detailing, paint correction, ceramic coating, boat & RV detailing, and maintenance care in Auburn, WA.">
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <SectionEyebrow class="mb-4 inline-block">Services</SectionEyebrow>
+        <h1 class="text-4xl font-bold text-text sm:text-5xl">Detailing Services Built Around Your Vehicle's Condition</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Whether your vehicle needs a quick refresh, a serious interior reset, or long-term paint protection, we'll help you choose the right service.
+        </p>
+      </div>
+
+      <div class="grid gap-8">
+        {
+          [
+            {
+              title: 'Interior Detailing',
+              img: images.interiorVacuuming,
+              alt: 'Vacuuming vehicle interior during detail',
+              desc: 'Deep vacuuming, steam cleaning, stain treatment, leather and vinyl care, and odor reduction for a cleaner, more comfortable cabin.',
+            },
+            {
+              title: 'Exterior Detailing',
+              img: images.washMitt,
+              alt: 'Hand washing with wash mitt',
+              desc: 'Foam wash, hand wash, decontamination, trim care, wheels, tires, and paint-safe finishing for a clean, glossy exterior.',
+            },
+            {
+              title: 'Paint Correction',
+              img: images.polish,
+              alt: 'Machine polishing vehicle paint',
+              desc: 'Machine polishing to reduce swirls, haze, oxidation, and light defects while restoring depth and clarity to the paint.',
+            },
+            {
+              title: 'Ceramic Coating',
+              img: images.ceramicCoatingApplicator,
+              alt: 'Applying ceramic coating with applicator',
+              desc: 'Long-term paint protection that adds gloss, improves water behavior, and makes maintenance washes easier.',
+            },
+            {
+              title: 'Boat & RV Detailing',
+              img: images.cleanRv,
+              alt: 'Clean detailed RV',
+              desc: 'Large-format detailing for boats, RVs, gelcoat, interiors, seasonal cleanup, and oxidation-prone surfaces.',
+            },
+            {
+              title: 'Maintenance Details',
+              img: images.suvClean,
+              alt: 'Clean SUV after maintenance detail',
+              desc: 'Recurring care for vehicles that already look good and need to stay clean, protected, and easy to maintain.',
+            },
+          ].map((service) => (
+            <Card class="grid overflow-hidden md:grid-cols-2 md:p-0">
+              <img src={service.img} alt={service.alt} class="h-56 w-full object-cover md:h-full" loading="lazy" />
+              <div class="flex flex-col justify-center p-6 sm:p-8">
+                <h2 class="mb-3 text-2xl font-bold text-text">{service.title}</h2>
+                <p class="mb-6 text-text-muted">{service.desc}</p>
+                <div>
+                  <Button href="/quote" size="sm">Get a Quote</Button>
+                </div>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

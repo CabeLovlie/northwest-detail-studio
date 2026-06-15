@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import PackageCard from '../components/PackageCard.astro';
+import Button from '../components/Button.astro';
+import { images } from '../lib/images';
+import { site } from '../lib/site';
+---
+
+<Base title={`Packages | ${site.name}`} description="Refresh, Deep Clean, Signature, and Ceramic Coating packages for every vehicle condition. Condition-based quotes in Auburn, WA.">
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <SectionEyebrow class="mb-4 inline-block">Packages</SectionEyebrow>
+        <h1 class="text-4xl font-bold text-text sm:text-5xl">Choose the Detail That Fits Your Vehicle</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Simple packages make it easier to choose, and condition-based quotes keep expectations clear.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+        <PackageCard
+          name="Refresh Detail"
+          price="Starting at $149"
+          description="Best for maintained vehicles that need a clean reset."
+          features={['Hand wash', 'Interior vacuum', 'Surface wipe-down', 'Windows', 'Wheels and tires', 'Light interior cleaning']}
+          duration="2–3 hours"
+          cta="Request Refresh Quote"
+        />
+        <PackageCard
+          name="Deep Clean Detail"
+          price="Starting at $249"
+          description="Best for daily drivers, family vehicles, pet hair, spills, stains, and neglected interiors."
+          features={['Full interior detail', 'Steam cleaning', 'Stain treatment', 'Upholstery or leather care', 'Exterior hand wash', 'Clay treatment', 'Paint sealant', 'Trim and tire dressing']}
+          duration="4–6 hours"
+          cta="Request Deep Clean Quote"
+          badge="Most Popular"
+          highlighted={true}
+        />
+        <PackageCard
+          name="Signature Detail"
+          price="Starting at $399"
+          description="Best for vehicles that need a full interior and exterior reset."
+          features={['Full interior deep clean', 'Exterior decontamination', 'One-step polish', 'Paint sealant', 'Wheel and tire detail', 'Final inspection', 'Care recommendations']}
+          duration="6–8 hours"
+          cta="Request Signature Quote"
+        />
+        <PackageCard
+          name="Ceramic Coating"
+          price="Starting at $699"
+          description="Best for drivers who want longer-lasting protection, deeper gloss, and easier washing."
+          features={['Paint decontamination', 'Gloss enhancement polish', 'Surface prep', 'Ceramic coating application', 'Cure guidance', 'Maintenance recommendations']}
+          duration="Varies by vehicle"
+          cta="Explore Ceramic Coating"
+          ctaHref="/ceramic-coating"
+          highlighted={true}
+          images={[images.ceramicCoatingReflection, images.waterBeading]}
+        />
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="mb-4 text-text-muted">Not sure which package fits? We'll recommend based on your vehicle's condition.</p>
+        <Button href="/quote">Get a Free Quote</Button>
+      </div>
+    </div>
+  </section>
+</Base>

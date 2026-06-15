@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import Button from '../components/Button.astro';
+import { images } from '../lib/images';
+import { site } from '../lib/site';
+---
+
+<Base title={`About | ${site.name}`} description="Learn about Northwest Detail Studio — a premium auto detailing concept built on care, clarity, and craft in Auburn, WA.">
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <SectionEyebrow class="mb-4">About</SectionEyebrow>
+          <h1 class="text-4xl font-bold text-text sm:text-5xl">Detailing Built on Care, Clarity, and Craft</h1>
+          <p class="mt-6 text-lg leading-relaxed text-text-muted">
+            Northwest Detail Studio is a premium detailing concept built around careful work, honest recommendations, and visible results. From daily-driver interiors to paint correction and ceramic protection, every service is designed to make your vehicle easier to enjoy and easier to maintain.
+          </p>
+          <p class="mt-4 text-sm italic text-text-muted">
+            This is a concept / sample business created as a portfolio showcase — not a real operating studio.
+          </p>
+          <div class="mt-8">
+            <Button href="/quote">Get a Free Quote</Button>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <img src={images.detailerAtWork01} alt="Detailer carefully working on a vehicle" class="aspect-[16/10] w-full rounded-2xl object-cover" loading="lazy" />
+          <div class="grid grid-cols-2 gap-3">
+            <img src={images.underLights} alt="Vehicle under studio lighting" class="aspect-square rounded-xl object-cover" loading="lazy" />
+            <img src={images.inspectionLight} alt="Paint inspection under specialized lighting" class="aspect-square rounded-xl object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

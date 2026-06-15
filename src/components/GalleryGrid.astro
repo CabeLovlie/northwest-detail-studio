@@ -1,0 +1,82 @@
+---
+import { images } from '../lib/images';
+import { galleryItems, galleryFilters } from '../lib/gallery';
+
+interface Props {
+  limit?: number;
+  showFilters?: boolean;
+  id?: string;
+}
+
+const { limit, showFilters = true, id = 'gallery-grid' } = Astro.props;
+const items = limit ? galleryItems.slice(0, limit) : galleryItems;
+---
+
+<div id={id}>
+  {
+    showFilters && (
+      <div class="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter gallery">
+        {
+          galleryFilters.map((filter) => (
+            <button
+              type="button"
+              class="gallery-filter rounded-full border border-white/15 bg-surface-soft px-4 py-2 text-sm font-medium text-text-muted transition-all hover:border-accent/40 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent data-[active=true]:border-accent data-[active=true]:bg-accent-soft data-[active=true]:text-accent"
+              data-filter={filter.id}
+              data-active={filter.id === 'all' ? 'true' : 'false'}
+            >
+              {filter.label}
+            </button>
+          ))
+        }
+      </div>
+    )
+  }
+
+  <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-4">
+    {
+      items.map((item) => (
+        <figure
+          class="gallery-item group relative aspect-square overflow-hidden rounded-xl border border-white/10 bg-surface-soft"
+          data-category={item.category}
+        >
+          <img
+            src={images[item.image]}
+            alt={item.alt}
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <figcaption class="absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-background/20 to-transparent p-3 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+            <span class="text-xs font-semibold text-text sm:text-sm">{item.label}</span>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  function initGalleryFilters() {
+    document.querySelectorAll('#gallery-grid, #gallery-page-grid').forEach((container) => {
+      const filters = container.querySelectorAll('.gallery-filter');
+      const items = container.querySelectorAll('.gallery-item');
+
+      filters.forEach((filter) => {
+        filter.addEventListener('click', () => {
+          const active = filter.getAttribute('data-filter');
+
+          filters.forEach((f) => f.setAttribute('data-active', 'false'));
+          filter.setAttribute('data-active', 'true');
+
+          items.forEach((item) => {
+            const category = item.getAttribute('data-category');
+            const show = active === 'all' || category === active;
+            (item as HTMLElement).style.display = show ? '' : 'none';
+          });
+        });
+      });
+    });
+  }
+
+  initGalleryFilters();
+  document.addEventListener('astro:page-load', initGalleryFilters);
+</script>

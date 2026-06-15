@@ -1,0 +1,66 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+  index: number;
+}
+
+const { question, answer, index } = Astro.props;
+const id = `faq-${index}`;
+---
+
+<div class="faq-item border-b border-white/10">
+  <h3>
+    <button
+      type="button"
+      class="faq-trigger flex w-full items-center justify-between gap-4 py-5 text-left text-base font-semibold text-text transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-lg"
+      aria-expanded="false"
+      aria-controls={`${id}-panel`}
+      id={`${id}-trigger`}
+    >
+      {question}
+      <svg
+        class="faq-icon h-5 w-5 shrink-0 text-accent transition-transform duration-200"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M6 9l6 6 6-6"></path>
+      </svg>
+    </button>
+  </h3>
+  <div
+    id={`${id}-panel`}
+    role="region"
+    aria-labelledby={`${id}-trigger`}
+    class="faq-panel hidden pb-5"
+  >
+    <p class="text-sm leading-relaxed text-text-muted sm:text-base">{answer}</p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      const panel = trigger.closest('.faq-item')?.querySelector('.faq-panel');
+      const icon = trigger.querySelector('.faq-icon');
+
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      panel?.classList.toggle('hidden', expanded);
+      icon?.classList.toggle('rotate-180', !expanded);
+    });
+
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        trigger.click();
+      }
+    });
+  });
+</script>
